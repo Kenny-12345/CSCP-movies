@@ -28,5 +28,15 @@ export const STREAM_SERVERS: StreamServer[] = [
     name: 'Server 4',
     getMovieUrl: (id) => `https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1`,
     getTvUrl: (id, s, e) => `https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1&s=${s}&e=${e}`,
+  },
+  {
+    name: 'Server 5 (vidsrc.nl)',
+    getMovieUrl: (id) => `https://vidsrc.nl/embed/movie/${id}`,
+    getTvUrl: (id, s, e) => `https://vidsrc.nl/embed/tv/${id}/${s}/${e}`,
+  },
+  {
+    name: 'Server 6 (embed.su)',
+    getMovieUrl: (id) => `https://embed.su/embed/movie/${id}`,
+    getTvUrl: (id, s, e) => `https://embed.su/embed/tv/${id}/${s}/${e}`,
   }
 ];
