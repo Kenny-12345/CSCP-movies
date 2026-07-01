@@ -10,9 +10,9 @@ export interface StreamServer {
 
 export const STREAM_SERVERS: StreamServer[] = [
   {
-    name: 'Server 1',
-    getMovieUrl: (id) => `https://autoembed.co/movie/tmdb/${id}`,
-    getTvUrl: (id, s, e) => `https://autoembed.co/tv/tmdb/${id}-${s}-${e}`,
+    name: 'Server 1 (Reliable)',
+    getMovieUrl: (id) => `https://embed.su/embed/movie/${id}`,
+    getTvUrl: (id, s, e) => `https://embed.su/embed/tv/${id}/${s}/${e}`,
   },
   {
     name: 'Server 2',
