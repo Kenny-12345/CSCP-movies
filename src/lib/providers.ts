@@ -11,8 +11,8 @@ export interface StreamServer {
 export const STREAM_SERVERS: StreamServer[] = [
   {
     name: 'Server 1',
-    getMovieUrl: (id) => `https://www.2embed.cc/embed/${id}`,
-    getTvUrl: (id, s, e) => `https://www.2embed.cc/embedtv/${id}&s=${s}&e=${e}`,
+    getMovieUrl: (id) => `https://autoembed.co/movie/tmdb/${id}`,
+    getTvUrl: (id, s, e) => `https://autoembed.co/tv/tmdb/${id}-${s}-${e}`,
   },
   {
     name: 'Server 2',
@@ -21,8 +21,8 @@ export const STREAM_SERVERS: StreamServer[] = [
   },
   {
     name: 'Server 3',
-    getMovieUrl: (id) => `https://autoembed.co/movie/tmdb/${id}`,
-    getTvUrl: (id, s, e) => `https://autoembed.co/tv/tmdb/${id}-${s}-${e}`,
+    getMovieUrl: (id) => `https://www.2embed.cc/embed/${id}`,
+    getTvUrl: (id, s, e) => `https://www.2embed.cc/embedtv/${id}&s=${s}&e=${e}`,
   },
   {
     name: 'Server 4',
