@@ -15,17 +15,22 @@ export const STREAM_SERVERS: StreamServer[] = [
     getTvUrl: (id, s, e) => `https://autoembed.co/tv/tmdb/${id}-${s}-${e}`,
   },
   {
-    name: 'Server 2',
+    name: 'Server 2 (Anime Support)',
+    getMovieUrl: (id) => `https://embed.su/embed/movie/${id}`,
+    getTvUrl: (id, s, e) => `https://embed.su/embed/tv/${id}/${s}/${e}`,
+  },
+  {
+    name: 'Server 3',
     getMovieUrl: (id) => `https://vidsrc.me/embed/movie?tmdb=${id}`,
     getTvUrl: (id, s, e) => `https://vidsrc.me/embed/tv?tmdb=${id}&season=${s}&episode=${e}`,
   },
   {
-    name: 'Server 3',
+    name: 'Server 4',
     getMovieUrl: (id) => `https://www.2embed.cc/embed/${id}`,
     getTvUrl: (id, s, e) => `https://www.2embed.cc/embedtv/${id}&s=${s}&e=${e}`,
   },
   {
-    name: 'Server 4',
+    name: 'Server 5',
     getMovieUrl: (id) => `https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1`,
     getTvUrl: (id, s, e) => `https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1&s=${s}&e=${e}`,
   }
