@@ -47,7 +47,6 @@ export default function VideoPlayer({ servers, title, tmdbId, type, seasons = []
           allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
           allowFullScreen
           title={title}
-          referrerPolicy="origin"
           onError={() => setIframeError(true)}
         />
       </div>
