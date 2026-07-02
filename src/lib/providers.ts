@@ -11,13 +11,13 @@ export interface StreamServer {
 export const STREAM_SERVERS: StreamServer[] = [
   {
     name: 'Server 1',
-    getMovieUrl: (id) => `https://autoembed.co/movie/tmdb/${id}`,
-    getTvUrl: (id, s, e) => `https://autoembed.co/tv/tmdb/${id}-${s}-${e}`,
+    getMovieUrl: (id) => `https://vidsrc.me/embed/movie?tmdb=${id}`,
+    getTvUrl: (id, s, e) => `https://vidsrc.me/embed/tv?tmdb=${id}&season=${s}&episode=${e}`,
   },
   {
     name: 'Server 2',
-    getMovieUrl: (id) => `https://vidsrc.me/embed/movie?tmdb=${id}`,
-    getTvUrl: (id, s, e) => `https://vidsrc.me/embed/tv?tmdb=${id}&season=${s}&episode=${e}`,
+    getMovieUrl: (id) => `https://autoembed.co/movie/tmdb/${id}`,
+    getTvUrl: (id, s, e) => `https://autoembed.co/tv/tmdb/${id}-${s}-${e}`,
   },
   {
     name: 'Server 3',
