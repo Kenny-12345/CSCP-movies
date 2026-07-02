@@ -38,5 +38,15 @@ export const STREAM_SERVERS: StreamServer[] = [
     name: 'Server 6 (embed.su)',
     getMovieUrl: (id) => `https://embed.su/embed/movie/${id}`,
     getTvUrl: (id, s, e) => `https://embed.su/embed/tv/${id}/${s}/${e}`,
+  },
+  {
+    name: 'Server 7 (smashy)',
+    getMovieUrl: (id) => `https://embed.smashystream.com/playere.php?tmdb=${id}`,
+    getTvUrl: (id, s, e) => `https://embed.smashystream.com/playere.php?tmdb=${id}&season=${s}&ep=${e}`,
+  },
+  {
+    name: 'Server 8 (vidsrc.to)',
+    getMovieUrl: (id) => `https://vidsrc.to/embed/movie/${id}`,
+    getTvUrl: (id, s, e) => `https://vidsrc.to/embed/tv/${id}/${s}/${e}`,
   }
 ];
