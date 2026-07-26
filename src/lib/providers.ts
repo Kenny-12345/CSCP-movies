@@ -28,5 +28,15 @@ export const STREAM_SERVERS: StreamServer[] = [
     name: 'Server 4',
     getMovieUrl: (id) => `https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1`,
     getTvUrl: (id, s, e) => `https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1&s=${s}&e=${e}`,
+  },
+  {
+    name: 'Server 5',
+    getMovieUrl: (id) => `https://vidlink.pro/movie/${id}`,
+    getTvUrl: (id, s, e) => `https://vidlink.pro/tv/${id}/${s}/${e}`,
+  },
+  {
+    name: 'Server 6',
+    getMovieUrl: (id) => `https://player.smashystream.com/movie/${id}`,
+    getTvUrl: (id, s, e) => `https://player.smashystream.com/tv/${id}?s=${s}&e=${e}`,
   }
 ];
