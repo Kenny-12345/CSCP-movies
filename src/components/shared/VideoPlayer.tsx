@@ -28,7 +28,6 @@ export default function VideoPlayer({ servers, title, tmdbId, type, poster = '',
   const { saveProgress } = useAuth();
 
   const isTV = type === 'tv';
-  const isNativeAdFree = STREAM_SERVERS[activeServer]?.isNativeAdFree;
 
   // Intercept window.open popups created by embedded players
   useEffect(() => {
@@ -82,13 +81,9 @@ export default function VideoPlayer({ servers, title, tmdbId, type, poster = '',
     }
   };
 
-  const currentUrl = isNativeAdFree
-    ? (isTV
-        ? `https://autoembed.co/tv/tmdb/${tmdbId}-${selectedSeason}-${selectedEpisode}`
-        : `https://autoembed.co/movie/tmdb/${tmdbId}`)
-    : (isTV
-        ? STREAM_SERVERS[activeServer]?.getTvUrl(tmdbId, selectedSeason, selectedEpisode)
-        : servers[activeServer]?.url);
+  const currentUrl = isTV
+    ? STREAM_SERVERS[activeServer]?.getTvUrl(tmdbId, selectedSeason, selectedEpisode)
+    : servers[activeServer]?.url;
 
   return (
     <div className="space-y-0">

@@ -4,18 +4,11 @@
 
 export interface StreamServer {
   name: string;
-  isNativeAdFree?: boolean;
   getMovieUrl: (tmdbId: string | number) => string;
   getTvUrl: (tmdbId: string | number, season: number, episode: number) => string;
 }
 
 export const STREAM_SERVERS: StreamServer[] = [
-  {
-    name: '⚡ Native Ad-Free',
-    isNativeAdFree: true,
-    getMovieUrl: (id) => `/api/stream?type=movie&id=${id}`,
-    getTvUrl: (id, s, e) => `/api/stream?type=tv&id=${id}&season=${s}&episode=${e}`,
-  },
   {
     name: 'Server 1',
     getMovieUrl: (id) => `https://vidsrc.me/embed/movie?tmdb=${id}`,
