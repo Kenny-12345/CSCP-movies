@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { MonitorPlay, ChevronDown, AlertTriangle, Maximize, ShieldCheck, RefreshCw } from 'lucide-react';
+import { MonitorPlay, ChevronDown, AlertTriangle, Maximize } from 'lucide-react';
 import { STREAM_SERVERS } from '@/lib/providers';
 import { useAuth } from '@/context/AuthContext';
 
@@ -21,8 +21,6 @@ export default function VideoPlayer({ servers, title, tmdbId, type, poster = '',
   const [selectedEpisode, setSelectedEpisode] = useState(1);
   const [iframeError, setIframeError] = useState(false);
 
-  // Click shield state (absorbs up to 4 ad-triggering clicks)
-  const [clickShieldCount, setClickShieldCount] = useState(4);
   const playerContainerRef = useRef<HTMLDivElement>(null);
 
   const { saveProgress } = useAuth();
@@ -55,21 +53,9 @@ export default function VideoPlayer({ servers, title, tmdbId, type, poster = '',
     });
   }, [tmdbId, isTV, selectedSeason, selectedEpisode, title, poster, backdrop, saveProgress]);
 
-  // Reset click shield when switching server or episode
   const switchServer = (i: number) => {
     setActiveServer(i);
     setIframeError(false);
-    setClickShieldCount(4);
-  };
-
-  const reactivateShield = () => {
-    setClickShieldCount(4);
-  };
-
-  const handleShieldClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    e.preventDefault();
-    setClickShieldCount((prev) => Math.max(0, prev - 1));
   };
 
   const toggleNativeFullscreen = () => {
@@ -94,15 +80,6 @@ export default function VideoPlayer({ servers, title, tmdbId, type, poster = '',
             <AlertTriangle className="w-12 h-12 text-yellow-500" />
             <p className="text-gray-300">This server is unavailable. Try another server below.</p>
           </div>
-        )}
-
-        {/* Click-Shield Overlay */}
-        {clickShieldCount > 0 && (
-          <div
-            onClick={handleShieldClick}
-            className="absolute inset-0 z-20 cursor-pointer bg-transparent"
-            title="Click to absorb popup ad layers"
-          />
         )}
 
         <iframe
@@ -146,17 +123,6 @@ export default function VideoPlayer({ servers, title, tmdbId, type, poster = '',
           </div>
 
           <div className="flex items-center gap-3 flex-wrap">
-            {/* Reactivate Shield Button */}
-            <button
-              onClick={reactivateShield}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-medium bg-emerald-600/15 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-600/25 transition-all"
-              title="Click to reactivate Ad-Shield if popups appear"
-            >
-              <ShieldCheck className="w-3.5 h-3.5" />
-              <span>{clickShieldCount > 0 ? `Shield Active (${clickShieldCount} clicks left)` : 'Re-activate Shield'}</span>
-              <RefreshCw className="w-3 h-3 ml-0.5 opacity-70" />
-            </button>
-
             {/* Native Fullscreen Toggle Button */}
             <button
               onClick={toggleNativeFullscreen}
@@ -203,10 +169,6 @@ export default function VideoPlayer({ servers, title, tmdbId, type, poster = '',
             )}
           </div>
         </div>
-
-        <p className="text-[11px] text-gray-600 mt-2 max-w-[1400px] mx-auto">
-          If popups reappear during playback, click &quot;Re-activate Shield&quot; above to instantly block ad triggers!
-        </p>
       </div>
     </div>
   );
