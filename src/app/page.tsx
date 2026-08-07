@@ -1,6 +1,7 @@
 import Navbar from '@/components/shared/Navbar';
 import Hero from '@/components/home/Hero';
 import ContentCarousel from '@/components/home/ContentCarousel';
+import ContinueWatchingRow from '@/components/shared/ContinueWatchingRow';
 import {
   getTrendingMovies,
   getTrendingShows,
@@ -66,7 +67,8 @@ export default async function Home() {
         />
       )}
 
-      <div className="relative z-20 -mt-24 space-y-2 pb-12">
+      <div className="relative z-20 -mt-24 px-4 md:px-8 max-w-7xl mx-auto space-y-2 pb-12">
+        <ContinueWatchingRow />
         <ContentCarousel title="🔥 Trending Movies" items={trendingMovies.map(mapMovie)} />
         <ContentCarousel title="📺 Trending TV Shows" items={trendingShows.map(mapMovie)} />
         <ContentCarousel title="🎬 Now Playing" items={nowPlaying.map(mapMovie)} />

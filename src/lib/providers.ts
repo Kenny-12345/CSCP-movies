@@ -4,11 +4,18 @@
 
 export interface StreamServer {
   name: string;
+  isNativeAdFree?: boolean;
   getMovieUrl: (tmdbId: string | number) => string;
   getTvUrl: (tmdbId: string | number, season: number, episode: number) => string;
 }
 
 export const STREAM_SERVERS: StreamServer[] = [
+  {
+    name: '⚡ Native Ad-Free',
+    isNativeAdFree: true,
+    getMovieUrl: (id) => `/api/stream?type=movie&id=${id}`,
+    getTvUrl: (id, s, e) => `/api/stream?type=tv&id=${id}&season=${s}&episode=${e}`,
+  },
   {
     name: 'Server 1',
     getMovieUrl: (id) => `https://vidsrc.me/embed/movie?tmdb=${id}`,
@@ -38,5 +45,10 @@ export const STREAM_SERVERS: StreamServer[] = [
     name: 'Server 6',
     getMovieUrl: (id) => `https://player.smashystream.com/movie/${id}`,
     getTvUrl: (id, s, e) => `https://player.smashystream.com/tv/${id}?s=${s}&e=${e}`,
+  },
+  {
+    name: 'Server 7',
+    getMovieUrl: (id) => `https://vidsrc.to/embed/movie/${id}`,
+    getTvUrl: (id, s, e) => `https://vidsrc.to/embed/tv/${id}/${s}/${e}`,
   }
 ];

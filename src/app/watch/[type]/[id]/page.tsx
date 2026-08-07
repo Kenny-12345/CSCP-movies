@@ -2,6 +2,7 @@ import { getMovieDetails, getTVDetails, posterUrl, backdropUrl } from '@/lib/tmd
 import { STREAM_SERVERS } from '@/lib/providers';
 import Navbar from '@/components/shared/Navbar';
 import VideoPlayer from '@/components/shared/VideoPlayer';
+import WatchlistButton from '@/components/shared/WatchlistButton';
 import Link from 'next/link';
 import { Star, Clock, Calendar, ArrowLeft } from 'lucide-react';
 
@@ -43,6 +44,16 @@ export default async function WatchPage({ params }: { params: Promise<{ type: st
     url: isMovie ? s.getMovieUrl(id) : s.getTvUrl(id, 1, 1),
   }));
 
+  const watchlistItem = {
+    id,
+    type: isMovie ? ('movie' as const) : ('tv' as const),
+    title,
+    poster,
+    backdrop,
+    year,
+    rating,
+  };
+
   return (
     <main className="min-h-screen bg-[#0f0f11] text-white">
       <Navbar />
@@ -51,7 +62,15 @@ export default async function WatchPage({ params }: { params: Promise<{ type: st
         {/* Video Player Section */}
         <div className="w-full bg-black">
           <div className="max-w-[1400px] mx-auto">
-            <VideoPlayer servers={servers} title={title} tmdbId={id} type={type} seasons={seasons} />
+            <VideoPlayer
+              servers={servers}
+              title={title}
+              tmdbId={id}
+              type={type}
+              poster={poster}
+              backdrop={backdrop}
+              seasons={seasons}
+            />
           </div>
         </div>
 
@@ -63,8 +82,9 @@ export default async function WatchPage({ params }: { params: Promise<{ type: st
 
           <div className="flex flex-col md:flex-row gap-8">
             {/* Poster */}
-            <div className="flex-shrink-0 w-48 md:w-64">
+            <div className="flex-shrink-0 w-48 md:w-64 space-y-4">
               <img src={poster} alt={title} className="rounded-lg shadow-2xl w-full" />
+              <WatchlistButton item={watchlistItem} />
             </div>
 
             {/* Details */}
